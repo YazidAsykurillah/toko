@@ -26,16 +26,16 @@ class UserController extends Controller
     //Return datatables response
     public function datatables(Request $request)
     {
-        DB::statement(DB::raw('set @rownum=0'));
         $users = User::select([
-            DB::raw('@rownum  := @rownum  + 1 AS rownum'),
             'id',
             'name',
             'email'
         ]);
         
-        $datatables = Datatables::of($users);
-
+        $datatables = Datatables::of($users)
+            ->addColumn('checkbox', function($users){
+                return '';
+            });
         if ($keyword = $request->get('search')['value']) {
             $datatables->filterColumn('rownum', 'whereRaw', '@rownum  + 1 like ?', ["%{$keyword}%"]);
         }
@@ -206,15 +206,16 @@ class UserController extends Controller
      */
 
     public function destroy($id)
-
     {
-
         User::find($id)->delete();
-
         return redirect()->route('users.index')
-
                         ->with('success','User deleted successfully');
+    }
 
+    public function deleteMultiple(Request $request)
+    {
+        $user_ids = $request->user_id_to_delete;
+        print_r($user_ids);
     }
 
 }

@@ -6,7 +6,7 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand" href="/home">TokoSys</a>
-            <a class="navbar-brand hidden" href="/home">TokoSys</a>
+            <a class="navbar-brand hidden" href="/home">TS</a>
         </div>
 
         <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -17,36 +17,41 @@
                     </a>
                 </li>
 
-                <h3 class="menu-title">Transaksi</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Transaction</h3><!-- /.menu-title -->
                 <li>
                     <a href="#">
-                        <i class="menu-icon fa fa-sign-out"></i>Penjualan
+                        <i class="menu-icon fa fa-sign-out"></i>Sales
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="menu-icon fa fa-sign-in"></i>Pembelian
+                        <i class="menu-icon fa fa-sign-in"></i>Purchasing
                     </a>
                 </li>
 
                 <li class="menu-item-has-children dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="menu-icon fa fa-book"></i>Laporan
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> <i class="menu-icon fa fa-book"></i>Report
                     </a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-sign-out"></i><a href="#">Penjualan</a></li>
-                        <li><i class="fa fa-sign-in"></i><a href="#">Pembelian</a></li>
+                        <li><i class="fa fa-sign-out"></i><a href="#">Sales</a></li>
+                        <li><i class="fa fa-sign-in"></i><a href="#">Purchasing</a></li>
                     </ul>
                 </li>      
 
                 <h3 class="menu-title">Master Data</h3><!-- /.menu-title -->
                 <li>
-                    <a href="{{ url('products')}}">
-                        <i class="menu-icon fa fa-th"></i>Produk
+                    <a href="{{ url('product')}}">
+                        <i class="menu-icon fa fa-th"></i>Product
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <i class="menu-icon fa fa-tags"></i>Kategori Produk
+                        <i class="menu-icon fa fa-tags"></i>Product Category
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="menu-icon fa fa-tag"></i>Product Unit
                     </a>
                 </li>
                 <li>
@@ -56,16 +61,16 @@
                 </li>
                 <li>
                     <a href="#">
-                        <i class="menu-icon fa fa-smile-o"></i>Pelanggan
+                        <i class="menu-icon fa fa-smile-o"></i>Customer
                     </a>
                 </li>
                 <li>
                     <a href="{{ url('users') }}">
-                        <i class="menu-icon fa fa-users"></i>Pengguna
+                        <i class="menu-icon fa fa-users"></i>User
                     </a>
                 </li>
 
-                <h3 class="menu-title">Inventori</h3><!-- /.menu-title -->
+                <h3 class="menu-title">Inventory</h3><!-- /.menu-title -->
                 
             </ul>
         </div><!-- /.navbar-collapse -->

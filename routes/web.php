@@ -24,8 +24,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles','RoleController');
 
+    Route::post('users/deleteMultiple', 'UserController@deleteMultiple');
     Route::get('users/datatables', 'UserController@datatables');
     Route::resource('users','UserController');
 
-    Route::resource('products','ProductController');
+    Route::get('product/datatables','ProductController@datatables');
+    Route::resource('product','ProductController');
 });

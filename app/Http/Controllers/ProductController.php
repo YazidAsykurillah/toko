@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
 
         $products = Product::latest()->paginate(5);
-        return view('products.index',compact('products'));
+        return view('product.index',compact('products'));
     }
 
 
@@ -63,7 +63,7 @@ class ProductController extends Controller
 
     {
 
-        return view('products.create');
+        return view('product.create');
 
     }
 
@@ -81,22 +81,17 @@ class ProductController extends Controller
      */
 
     public function store(Request $request)
-
     {
-
-        request()->validate([
-
+        $request->validate([
             'name' => 'required',
-
+            'category_id' => 'required',
+            'unit_id' => 'required',
             'detail' => 'required',
-
         ]);
-
-
         Product::create($request->all());
 
 
-        return redirect()->route('products.index')
+        return redirect()->route('product.index')
 
                         ->with('success','Product created successfully.');
 
@@ -119,7 +114,7 @@ class ProductController extends Controller
 
     {
 
-        return view('products.show',compact('product'));
+        return view('product.show',compact('product'));
 
     }
 
@@ -140,7 +135,7 @@ class ProductController extends Controller
 
     {
 
-        return view('products.edit',compact('product'));
+        return view('product.edit',compact('product'));
 
     }
 
@@ -175,7 +170,7 @@ class ProductController extends Controller
         $product->update($request->all());
 
 
-        return redirect()->route('products.index')
+        return redirect()->route('product.index')
 
                         ->with('success','Product updated successfully');
 
@@ -201,7 +196,7 @@ class ProductController extends Controller
         $product->delete();
 
 
-        return redirect()->route('products.index')
+        return redirect()->route('product.index')
 
                         ->with('success','Product deleted successfully');
 

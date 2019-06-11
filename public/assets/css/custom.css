@@ -6,3 +6,8 @@
   text-align: left;
   z-index: 9; 
 }
+
+/*Remove  btn class padding inside the table cell*/
+td > .btn{
+	padding: 0;
+}
