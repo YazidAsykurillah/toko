@@ -28,6 +28,18 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('users/datatables', 'UserController@datatables');
     Route::resource('users','UserController');
 
+    //Product
     Route::get('product/datatables','ProductController@datatables');
     Route::resource('product','ProductController');
+
+    //Product Category
+    Route::post('product-category/deleteMultiple', 'ProductCategoryController@deleteMultiple');
+    Route::resource('product-category', 'ProductCategoryController');
+
+
+    //Datatables
+    Route::get('datatables/productCategory', 'ProductCategoryController@datatables');
+
+    //Select2
+    Route::get('select2/productCategory', 'ProductCategoryController@select2');
 });

@@ -45,22 +45,22 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ url('product-category') }}">
                         <i class="menu-icon fa fa-tags"></i>Product Category
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ url('product-unit') }}">
                         <i class="menu-icon fa fa-tag"></i>Product Unit
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ url('suplier') }}">
                         <i class="menu-icon fa fa-briefcase"></i>Suplier
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{ url('customer') }}">
                         <i class="menu-icon fa fa-smile-o"></i>Customer
                     </a>
                 </li>

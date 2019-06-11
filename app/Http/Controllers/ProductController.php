@@ -84,15 +84,12 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'category_id' => 'required',
-            'unit_id' => 'required',
+            'product_category_id' => 'required',
+            'product_unit_id' => 'required',
             'detail' => 'required',
         ]);
         Product::create($request->all());
-
-
         return redirect()->route('product.index')
-
                         ->with('success','Product created successfully.');
 
     }

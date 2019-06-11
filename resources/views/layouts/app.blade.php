@@ -67,36 +67,39 @@
 
         <div class="content mt-3">
             <!--Alerts-->
-            @if(Session::has('successMessage'))
-            <div class="col-md-12">
-                <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                    <span class="badge badge-pill badge-success">Success</span>{{ Session::get('successMessage') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="row">
+                @if(Session::has('successMessage'))
+
+                <div class="col-md-12">
+                    <div class="alert  alert-success alert-dismissible" role="alert">
+                        <span class="badge badge-pill badge-success">Success</span>{{ Session::get('successMessage') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            @endif
-            @if(Session::has('warningMessage'))
-            <div class="col-md-12">
-                <div class="alert  alert-warning alert-dismissible fade show" role="alert">
-                    <span class="badge badge-pill badge-warning">Warning</span>{{ Session::get('warningMessage') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                @endif
+                @if(Session::has('warningMessage'))
+                <div class="col-md-12">
+                    <div class="alert  alert-warning alert-dismissible" role="alert">
+                        <span class="badge badge-pill badge-warning">Warning</span>{{ Session::get('warningMessage') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            @endif
-            @if(Session::has('errorMessage'))
-            <div class="col-md-12">
-                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
-                    <span class="badge badge-pill badge-danger">Error</span>{{ Session::get('errorMessage') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                @endif
+                @if(Session::has('errorMessage'))
+                <div class="col-md-12">
+                    <div class="alert  alert-danger alert-dismissible" role="alert">
+                        <span class="badge badge-pill badge-danger">Error</span>{{ Session::get('errorMessage') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
+                @endif
             </div>
-            @endif
             <!--END Alerts-->
 
             @yield('content')
