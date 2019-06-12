@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('page-title')
-  Product Category List
+  Product Unit List
 @endsection
 
 @section('additionalStyles')
@@ -10,12 +10,12 @@
 @endSection
 
 @section('page-name')
-  <h1>Product Category List</h1>
+  <h1>Product Unit List</h1>
 @endSection
 
 @section('breadcrumb-list')
   <li><a href="{{ url('home') }}"><i class="fa fa-home"></i></a></li>
-  <li><a href="{{ url('product-category') }}">Product Category</a></li>
+  <li><a href="{{ url('product-unit') }}">Product Unit</a></li>
   <li class="active">Index</li>
 @endSection
 
@@ -25,16 +25,16 @@
       <div class="card">
         <div class="card-header">
           <strong class="card-title">
-            Product Category List
+            Product Unit Table
           </strong>
           <span class="float-right">
-            <a href="/product-category/create" class="btn btn-default btn-sm"><i class="fa fa-plus-circle"></i></a>
-            <button class="btn btn-default btn-sm" id="btn-delete-product-category"><i class="fa fa-trash"></i></button>
+            <a href="/product-unit/create" class="btn btn-default btn-sm"><i class="fa fa-plus-circle"></i></a>
+            <button class="btn btn-default btn-sm" id="btn-delete-product-unit"><i class="fa fa-trash"></i></button>
           </span>
         </div>
         <div class="card-body">
          <div class="table-responsive">
-            <table id="table-product-category" class="table">
+            <table id="table-product-unit" class="table">
               <thead>
                 <tr>
                     <th style="width: 5%; text-align: center;">#</th>
@@ -53,20 +53,20 @@
   </div>
 
   <!--Delete modal-->
-  <div class="modal fade" id="deleteProductCategoryModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductCategoryModalLabel" aria-hidden="true">
+  <div class="modal fade" id="deleteProductUnitModal" tabindex="-1" role="dialog" aria-labelledby="deleteProductUnitModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteProductCategoryModalLabel">Delete Confirmation</h5>
+          <h5 class="modal-title" id="deleteProductUnitModalLabel">Delete Confirmation</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <p class="alert alert-warning">
-            <i class="fa fa-warning"></i> <span id="delete-counter"></span> product category will be deleted
+            <i class="fa fa-warning"></i> <span id="delete-counter"></span> product unit will be deleted
           </p>
-          {!! Form::open(['url'=>'product-category/deleteMultiple', 'role'=>'form', 'id'=>'form-delete-product-category', 'class'=>'form-horizontal', 'method'=>'post']) !!}
+          {!! Form::open(['url'=>'product-unit/deleteMultiple', 'role'=>'form', 'id'=>'form-delete-product-unit', 'class'=>'form-horizontal', 'method'=>'post']) !!}
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
@@ -97,19 +97,19 @@
   <script src="/vendors/datatables.net-bs4/js/dataTables.bootstrap4.js"></script>
   <script type="text/javascript">
   (function ($) {
-    //Define selected product categories
-    var selectedProductCategories = [];
+    //Define selected product units
+    var selectedProductUnits = [];
 
     //Build datatable
-    var tableProductCategory = $('#table-product-category').DataTable({
+    var tableProductUnit = $('#table-product-unit').DataTable({
       lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
       processing: true,
       serverSide: true,
-      ajax: '{{ url('datatables/productCategory') }}',
+      ajax: '{{ url('datatables/productUnit') }}',
       columns: [
         { data: 'checkbox', name: 'checkbox' , orderable:false, searchable:false},
         { data: 'name', name: 'name', render:function(data, type, row){
-          return "<a href='/product-category/"+ row.id +"' class='btn btn-link'>" + row.name + "</a>";
+          return "<a href='/product-unit/"+ row.id +"' class='btn btn-link'>" + row.name + "</a>";
         }},
         { data: 'description', name: 'description' },
         { data: 'id', name: 'id', visible:false },
@@ -128,23 +128,23 @@
     });
 
     //Delete handling
-    $('#btn-delete-product-category').on('click',function(){
-      selectedProductCategories=[];
-      var selected_product_category_ids = tableProductCategory.rows('.selected').data();
-      $.each( selected_product_category_ids, function( key, value ) {
-        selectedProductCategories.push(selected_product_category_ids[key].id);
+    $('#btn-delete-product-unit').on('click',function(){
+      selectedProductUnits=[];
+      var selected_product_unit_ids = tableProductUnit.rows('.selected').data();
+      $.each( selected_product_unit_ids, function( key, value ) {
+        selectedProductUnits.push(selected_product_unit_ids[key].id);
       });
-      if(selectedProductCategories.length == 0){
+      if(selectedProductUnits.length == 0){
         $('#emptyDataModal').modal('show');
       }else{
-        $('#form-delete-product-category').find('.id_to_delete').remove();
-        $.each( selectedProductCategories, function( key, value ) {
-          $('#form-delete-product-category').append('<input type="text" class="id_to_delete" name="id_to_delete[]" value="'+value+'"/>');
+        $('#form-delete-product-unit').find('.id_to_delete').remove();
+        $.each( selectedProductUnits, function( key, value ) {
+          $('#form-delete-product-unit').append('<input type="hidden" class="id_to_delete" name="id_to_delete[]" value="'+value+'"/>');
         });
-        $('#delete-counter').html(selectedProductCategories.length);
-        $('#deleteProductCategoryModal').modal('show');
+        $('#delete-counter').html(selectedProductUnits.length);
+        $('#deleteProductUnitModal').modal('show');
       }
-      console.log(selectedProductCategories);
+      console.log(selectedProductUnits);
     });
   })(jQuery);
   </script>

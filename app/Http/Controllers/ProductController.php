@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 
 use Illuminate\Http\Request;
+use Yajra\Datatables\Datatables;
 
 class ProductController extends Controller
 
@@ -41,11 +42,31 @@ class ProductController extends Controller
      */
 
     public function index()
-
     {
 
         $products = Product::latest()->paginate(5);
         return view('product.index',compact('products'));
+    }
+
+    //Return datatables response
+    public function datatables(Request $request)
+    {
+        $data = Product::select([
+            'id',
+            'name',
+            'product_category_id',
+            'product_unit_id',
+            'detail',
+        ])
+        ->with(['product_category', 'product_unit']);
+        
+        $datatables = Datatables::of($data)
+            ->addColumn('checkbox', function($data){
+                return '';
+            });
+        
+
+        return $datatables->make(true);
     }
 
 

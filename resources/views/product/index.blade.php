@@ -98,7 +98,33 @@
     var selectedProducts = [];
 
     //Build datatable
-    var tableProduct = $('#table-product').DataTable({});
+    var tableProduct = $('#table-product').DataTable({
+      lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],
+      processing: true,
+      serverSide: true,
+      ajax: '{{ url('datatables/product') }}',
+      columns: [
+        { data: 'checkbox', name: 'checkbox' , orderable:false, searchable:false},
+        { data: 'name', name: 'name', render:function(data, type, row){
+          return "<a href='/product/"+ row.id +"' class='btn btn-link'>" + row.name + "</a>";
+        }},
+        { data: 'product_category.name', name: 'product_category.name', orderable:true },
+        { data: 'product_unit.name', name: 'product_unit.name', orderable:false  },
+        { data: 'detail', name: 'detail', orderable:false },
+        { data: 'id', name: 'id', visible:false },
+      ],
+      columnDefs: [ {
+          orderable: false,
+          className: 'select-checkbox',
+          targets:0
+      }],
+      select: {
+          style:    'multi',
+          selector: 'td:first-child'
+      },
+      order: [1, 'asc'],
+
+    });
 
     //Delete handling
     $('#btn-delete-user').on('click',function(){

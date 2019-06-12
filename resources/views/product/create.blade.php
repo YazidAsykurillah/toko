@@ -61,10 +61,11 @@
               </div>
               <div class="col-12 col-md-9">
                 <select name="product_unit_id" id="product_unit_id" class="form-control {{ $errors->has('product_unit_id') ? ' is-invalid' : '' }}">
-                    <option value="">Please select</option>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
+                  @if(Request::old('product_unit_id') != NULL)
+                    <option value="{{Request::old('product_unit_id')}}">
+                      {{ \App\ProductUnit::find(Request::old('product_unit_id'))->name }}
+                    </option>
+                  @endif
                 </select>
                 @if ($errors->has('product_unit_id'))
                   <span class="help-block">{{ $errors->first('product_unit_id') }}</span>
@@ -126,8 +127,29 @@
       allowClear : true,
     });
     //ENDSelect Product category handler
-    $('#product_unit_id').select2();
 
+    //Select Product unit handler
+    $('#product_unit_id').select2({
+      placeholder: 'Select product unit...',
+      ajax: {
+        url: '/select2/productUnit',
+        dataType: 'json',
+        delay: 250,
+        processResults: function (data) {
+          return {
+            results:$.map(data, function (item) {
+              return {
+                text: item.name,
+                id: item.id
+              }
+            })
+          };
+        },
+        cache: true
+      },
+      allowClear : true,
+    });
+    //ENDSelect Product unit handler
     //Form store product submission handling
     $('#form-store-product').on('submit', function(){
       $('#btn-submit').prop('disabled', true);

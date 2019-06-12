@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TokoSys</title>
+    <title>@yield('page-title')</title>
     <meta name="description" content="Toko Admin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 

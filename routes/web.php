@@ -36,10 +36,16 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('product-category/deleteMultiple', 'ProductCategoryController@deleteMultiple');
     Route::resource('product-category', 'ProductCategoryController');
 
+    //Product Unit
+    Route::post('product-unit/deleteMultiple', 'ProductUnitController@deleteMultiple');
+    Route::resource('product-unit', 'ProductUnitController');
 
     //Datatables
     Route::get('datatables/productCategory', 'ProductCategoryController@datatables');
+    Route::get('datatables/productUnit', 'ProductUnitController@datatables');
+    Route::get('datatables/product', 'ProductController@datatables');
 
     //Select2
     Route::get('select2/productCategory', 'ProductCategoryController@select2');
+    Route::get('select2/productUnit', 'ProductUnitController@select2');
 });

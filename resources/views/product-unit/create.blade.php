@@ -5,12 +5,12 @@
 @endSection
 
 @section('page-name')
-  <h1>Create Product Category</h1>
+  <h1>Create Product Unit</h1>
 @endSection
 
 @section('breadcrumb-list')
   <li><a href="{{ url('home') }}"><i class="fa fa-home"></i></a></li>
-  <li><a href="{{ url('product-category') }}">Product Category</a></li>
+  <li><a href="{{ url('product-unit') }}">Product Unit</a></li>
   <li class="active">Create</li>
 @endSection
 
@@ -20,17 +20,17 @@
       <div class="card">
         <div class="card-header">
           <strong class="card-title">
-            Create Product Category Form
+            Create Product Unit Form
           </strong>
         </div>
-        {!! Form::open(['route'=>'product-category.store','role'=>'form','class'=>'form-horizontal','id'=>'form-store-product-category','files'=>true]) !!}
+        {!! Form::open(['route'=>'product-unit.store','role'=>'form','class'=>'form-horizontal','id'=>'form-store-product-unit','files'=>true]) !!}
         <div class="card-body card-block">
             <div class="row form-group">
               <div class="col col-md-2">
                 <label for="name" class=" form-control-label">Name</label>
               </div>
               <div class="col-12 col-md-9">
-                <input type="text" id="name" name="name" placeholder="Product category name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}">
+                <input type="text" id="name" name="name" placeholder="Product Unit name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{ old('name') }}">
                 @if ($errors->has('name'))
                   <span class="help-block">{{ $errors->first('name') }}</span>
                 @endif
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary btn-sm" id="btn-submit-product-category">
+          <button type="submit" class="btn btn-primary btn-sm" id="btn-submit-product-unit">
             <i class="fa fa-dot-circle-o"></i> Submit
           </button>
           <button type="reset" class="btn btn-danger btn-sm">
@@ -66,8 +66,8 @@
   <script src="/vendors/select2/js/select2.js"></script>
   <script type="text/javascript">
   (function ($){
-    $('#form-store-product-category').on('submit', function(){
-      $('#btn-submit-product-category').prop('disabled', true);
+    $('#form-store-product-unit').on('submit', function(){
+      $('#btn-submit-product-unit').prop('disabled', true);
     });
   })(jQuery);
   </script>

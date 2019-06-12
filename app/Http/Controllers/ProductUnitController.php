@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductCategory;
+use App\ProductUnit;
 use Illuminate\Http\Request;
 
 use Yajra\Datatables\Datatables;
 
-use App\Http\Requests\StoreProductCategoryRequest;
-use App\Http\Requests\UpdateProductCategoryRequest;
+//Form requests
+use App\Http\Requests\StoreProductUnit;
+use App\Http\Requests\UpdateProductUnit;
 
-
-class ProductCategoryController extends Controller
+class ProductUnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,13 +20,13 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        return view('product-category.index');
+        return view('product-unit.index');
     }
 
     //Return datatables response
     public function datatables(Request $request)
     {
-        $data = ProductCategory::select([
+        $data = ProductUnit::select([
             'id',
             'name',
             'description',
@@ -47,7 +47,7 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        return view('product-category.create');
+        return view('product-unit.create');
     }
 
     /**
@@ -56,11 +56,11 @@ class ProductCategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductCategoryRequest $request)
+    public function store(StoreProductUnit $request)
     {
-        ProductCategory::create($request->all());
-        return redirect()->route('product-category.index')
-            ->with('successMessage','ProductCategory has been created');   
+        ProductUnit::create($request->all());
+        return redirect('product-unit')
+            ->with('successMessage', "Product unit has been created");
     }
 
     /**
@@ -71,9 +71,9 @@ class ProductCategoryController extends Controller
      */
     public function show($id)
     {
-        $productCategory = ProductCategory::findOrFail($id);
-        return view('product-category.show')
-            ->with('productCategory', $productCategory);
+        $productUnit = ProductUnit::findOrFail($id);
+        return view('product-unit.show')
+            ->with('productUnit', $productUnit);
     }
 
     /**
@@ -84,9 +84,9 @@ class ProductCategoryController extends Controller
      */
     public function edit($id)
     {
-        $productCategory = ProductCategory::findOrFail($id);
-        return view('product-category.edit')
-            ->with('productCategory', $productCategory);
+        $productUnit = ProductUnit::findOrFail($id);
+        return view('product-unit.edit')
+            ->with('productUnit', $productUnit);
     }
 
     /**
@@ -96,14 +96,14 @@ class ProductCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductCategoryRequest $request, $id)
+    public function update(UpdateProductUnit $request, $id)
     {
-        $productCategory = ProductCategory::findOrFail($id);
-        $productCategory->name = $request->name;
-        $productCategory->description = $request->description;
-        $productCategory->save();
-        return redirect('product-category/'.$id)
-            ->with('successMessage', "Product category has been updated");
+        $productUnit = ProductUnit::findOrFail($id);
+        $productUnit->name = $request->name;
+        $productUnit->description = $request->description;
+        $productUnit->save();
+        return redirect('product-unit/'.$id)
+            ->with('successMessage', "Updated");
     }
 
     /**
@@ -114,13 +114,12 @@ class ProductCategoryController extends Controller
      */
     public function destroy($id)
     {
-        $productCategory = ProductCategory::findOrFail($id);
+        $productUnit = ProductUnit::findOrFail($id);
         
-        if($productCategory->delete()){
+        if($productUnit->delete()){
             return TRUE;
         }
         return FALSE;
-
     }
 
     public function deleteMultiple(Request $request)
@@ -132,7 +131,7 @@ class ProductCategoryController extends Controller
             }
         }
         return redirect()->back()
-            ->with('successMessage', "$deleted product category has been deleted");
+            ->with('successMessage', "$deleted product unit has been deleted");
 
     }
 
@@ -141,13 +140,13 @@ class ProductCategoryController extends Controller
         $data = [];
         if($request->has('q')){
             $search = $request->q;
-            $data = \DB::table("product_categories")
+            $data = \DB::table("product_units")
                 ->select("id","name")
                 ->where('name','LIKE',"%$search%")
                 ->get();
         }
         else{
-            $data = \DB::table("product_categories")
+            $data = \DB::table("product_units")
                     ->select("id","name")
                     ->get();
             
